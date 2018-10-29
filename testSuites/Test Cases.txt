@@ -1,0 +1,134 @@
+*****     ALL TEST CASES     *****
+
+*** test01BasicView ***
+
+* test01_001_Onboarding *
+- Check if there is a Checkbox/Switch for Human Web on Onboarding Intro page.
+- Check if Recommended is selected by default.
+- Check if the 4th Onboarding is Ghostery/Cliqz Tab.
+- Check if the 3rd Onboarding is Quick Search.
+- Check if the 2nd Onboarding is Anti-Tracking.
+- Check if the Checkbox/Switch Changes status on Click.
+- Check if there is a Checkbox/Switch is Default Checked/Enabled.
+- Check if there are 3 Buttons for Default Tracking.
+- Check if the Onboarding Intro Text is correct.
+- Check if clicking on an option selects it.
+
+* test01_002_FirstLaunch *
+- Check if Address Bar exists.
+- Check that Keyboard is already Minimized.
+- Check if Address Bar does not exist.
+- Check if URL Bar exists.
+
+* test01_003_CheckAddressBar *
+- Check if Address Bar exists.
+- Check Address Bar updates correctly.
+- Check if Reader Mode is on FreshTab.
+- Check Address Bar Pretext.
+- Check Address Bar updates correctly again.
+- Check URL Bar exists and has Pretext.
+
+* test01_004_TabsOverview *
+- Check Tabs Panel Header Bar has a Tabs Button.
+- Check Tabs Panel Header Bar has a Menu Button.
+- Check Tabs Panel has a Header Bar.
+- Check if only 1 Tab exists in the list.
+- Check Tabs Panel Element is present.
+- Check Address Bar is not present.
+- Check if Private Tabs List is Empty.
+- Check Tabs Panel Header Bar has a Add Tab Button.
+- Check if the tabs count is as per the number of tabs.
+- Check if FreshTab is opened after removing all tabs.
+- Check Tabs Panel Header Bar has a Private Button.
+
+* test01_005_HomeScreenOnboarding *
+- Check if Clicking Cancel removes the Add to Home Screen Panel.
+- Check if Action Button is present.
+- Check if Add to Home Screen Onboarding Appears.
+- Check if the Add to Home Screen Link is correct.
+- Check if Cancel Button is present.
+- Check if Add to Home Screen Button appears.
+
+
+*** test02SettingsMenu ***
+
+* test02_001_DefaultSettings_Search *
+- Check Default Setting for Quick Search.
+- Check Default Setting for Human Web.
+- Check Default Setting for Complementary Search.
+- Check if you can open the Settings Menu.
+- Check Default Setting for Enable Autocompletion.
+- Check Default Setting for Search Results For.
+- Check Default Setting for Block Explicit Content.
+
+* test02_002_DefaultSettings_StartTab *
+- Check Default Setting for News.
+- Check Default Setting for Most Visited Websites.
+
+
+- Check Default Setting for Background Image.
+
+
+*** test03FreshTabFeatures ***
+
+* test03_001_News *
+- Check if News section is already Expanded.
+- Check that there are only 2/3 News displayed.
+- Check if Clicking on More News increases the news count.
+- Check if News Section Loads.
+- Check if clicking on a news navigates to the correct news page.
+
+* test03_002_HistoryList *
+- Check if the URL is correctly generated in History.
+- Check if only 1 History entry is generated.
+- Check if the History is Empty.
+
+* test03_003_TopSites *
+- Check if the Domain of Ask.com is correct.
+- Check if a TopSite can be removed.
+- Visit Test Webpage and Check if TopSite is added.
+- Visit Ask.com and Check if TopSite is added.
+- Check if Clearing History removes the TopSites as well.
+- Check for Top Sites Section.
+- Check if the Domain of the Test Webpage is correct.
+- Check if only the correct TopSite is removed and the other remains.
+
+
+*** test04UserTabFeatures ***
+
+* test04_001_ReaderMode *
+- Get out of Reader Mode
+- Get into Reader Mode
+- The Reader Mode Button is visible for the webpage
+
+
+*** test05GhosteryControlCenter ***
+
+* test05_001_GhosteryCCBasicView *
+- Check if Clicking on All Trackers Changes the Selection.
+- Check if Ghostery CC has Site Trackers Button.
+- Check if Ghostery CC Overview Button is selected by Default.
+- Check if the Value below the Ghosty Icon is an Integer.
+- Check if Ghosty Icon is present.
+- Check if Ghostery CC Appears on clicking Ghosty.
+- Check if Ghostery CC Disappears on clicking Ghosty.
+- Check if Ghostery CC has Overview Button.
+- Check if Ghostery CC has All Trackers Button.
+- Check if Ghostery CC has A Donut.
+- Check if Clicking on Site Trackers Changes the Selection.
+
+* test05_002_GhosteryCCAdBlocking *
+- Check if Enhanced Options can be Collapsed.
+- Check if AD Block Status is as per the setting of the Feature.
+- Check if the Checkbox/Switch Changes status on Click.
+- Check if the AdBlocker Checkbox/Switch is Default Checked/Enabled.
+- Check if Enhanced Options can be Expanded.
+- Check if AD Block Status is as per the setting of the Feature after it is Changed.
+
+
+*** test06SearchFeatures ***
+
+* test06_001_SearchResultsFor *
+- Check Backend for United States.
+- Check Backend for Germany.
+- Check Backend for France.

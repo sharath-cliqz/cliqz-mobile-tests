@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+echo "Starting Appium Test Script...."
+
+echo "\nRequired Tools:"
+python --version
+pip --version
+appium --version
+
+
+## Initialize Script
+echo "\n\nGetting Arguments (If Any)..."
+testCase=""
+for var in "$@"
+do
+    var="TestRunner.${var}"
+    testCase="${testCase}${var} "
+done
+
+# Setting Envs  ( CHANGE THE VARIABLES IN 'envs.sh' )
+echo "\n\nSetting Environment Variables..."
+source scripts/envs.sh
+
+
+### Clear Previous Test Run Files
+echo "\n\nClean up Test Environment..."
+rm -rf *.log
+rm -f test-reports/*.xml
+rm -rf screenshots
+
+
+### Start Appium
+echo "\n\nLaunch Appium and push it to the background..."
+appium --log appium.log &
+echo $! > appium.pid
+sleep 5
+
+
+### Launch the Tests    ( If a parameter was passed it will be considered as the test method to run )
+echo "\n\nLaunch the Tests..."
+if [ "${testCase}" == "" ]
+then
+    echo "\nRunning the Full Suite of Tests..."
+    python testRunner.py
+else
+    python testRunner.py ${testCase}
+fi
+
+
+### Close Appium
+echo "\n\n\nClosing Appium..."
+kill `cat appium.pid` || true
+rm -f appium.pid
+
+
+### End
+echo "\n\n\nScript Run:  *** FINISHED ***!\n\n\n"

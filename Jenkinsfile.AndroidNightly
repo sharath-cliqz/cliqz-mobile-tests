@@ -1,0 +1,66 @@
+#!/bin/env groovy
+
+node('us-east-1 && ubuntu && docker') {
+    stage('Checkout') {
+        checkout scm
+    }
+    def dockerTag = sh(returnStdout: true, script: """curl https://raw.githubusercontent.com/cliqz-oss/cliqz-android/master/mozilla-release/browser/config/version_display.txt""").trim()
+    def baseImageName = "browser-f/android:${dockerTag}"
+    def args = "-v ${pwd}/artifacts:/artifacts:rw"
+    docker.image("141047255820.dkr.ecr.us-east-1.amazonaws.com/${baseImageName}").inside(args) {
+
+        try{
+            stage('Run Tests') {
+                timeout(60) {
+                    sh'''#!/bin/bash -l
+                        set -x
+                        set -e
+                        wget "http://repository.cliqz.com.s3.amazonaws.com/dist/android/nightly/ghostery/latest.apk"
+                        cp scripts/TestDroidAppiumServer.sh .
+                        cp scripts/run-tests-a.sh .
+                        cp scripts/run-tests-i.sh .
+                        chmod a+x TestDroidAppiumServer.sh
+                        ./TestDroidAppiumServer.sh android
+                   '''
+               }
+            }
+            stage('Upload Results') {
+                junit "reports/xml/*.xml"
+                zip archive: true, dir: 'reports/screenshots', glob: '', zipFile: 'screenshots.zip'
+            }
+        }
+        finally{
+            stage('Send email') {
+                def SUCCESS_RATIO = "** DID NOT COMPLETE **"
+                try {
+                    SUCCESS_RATIO = readFile('reports/success_ratio.txt').trim()
+                } catch (e) {
+                    print e
+                }
+                def date = new Date()
+                def RUN_NAME = date.format("dd/MM/yyyy - HH:mm:ss")
+                def subtxt = '$PROJECT_NAME - Build # $BUILD_NUMBER - Tests Passed: '
+                subtxt += "${SUCCESS_RATIO}%"
+                def bodytxt = '$PROJECT_NAME - Build # $BUILD_NUMBER - Tests Passed: '
+                bodytxt += "${SUCCESS_RATIO}%"
+                bodytxt += '\n\nCheck console output at http://jenkins-master-v2-gp.clyqz.com:8080/job/cliqz-oss/job/cliqz-android/job/android-testdroid-nightly/' + env.BUILD_NUMBER + '/ to view the results on Jenkins.'
+                bodytxt += '\n\n\nCheck the Results on BitBar: https://cloud.bitbar.com/#testing/projects/154899874'
+
+                emailext(
+                    to: 'qamobile@cliqz.com',
+                    subject: subtxt,
+                    body: bodytxt
+                )
+            }
+            stage('Clean') {
+                sh '''#!/bin/bash -l
+                    set -x
+                    set -e
+                    rm -rf reports
+                    rm -f *.apk
+                    rm -f screenshots.zip
+                '''
+            }
+        }
+    }
+}

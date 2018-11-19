@@ -167,7 +167,7 @@ class TestBasicView:
         self.assertIsEqual(PTO.isPrivateTabsEmpty(tabsPanel), True,
                            "Check if Private Tabs List is Empty.", noException=True)
         PTO.closeAllTabs()
-        self.assertIsEqual(PFT.getURLBar().text, "Search or enter address",
+        self.assertIsEqual(PFT.disableAddressBar().text, "Search or enter address",
                            "Check if FreshTab is opened after removing all tabs.")
 
     @unittest.skipIf(TestUtils().isRequiredPlatform("ios"),

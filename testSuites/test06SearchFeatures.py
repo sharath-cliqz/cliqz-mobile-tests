@@ -23,6 +23,7 @@ class TestSearchFeatures:
         testData = PSM.getSearchResultsForTestData()
         for country in testData:
             testPassStatus = None
+            PFT.disableAddressBar()
             PFT.goToSettings()
             if self.isPlatform('android'): PSM.openOrClickSetting("general")
             PSM.openOrClickSetting("searchResultsFor")
@@ -57,6 +58,7 @@ class TestSearchFeatures:
         testData = PSM.getComplementarySearchEngines()
         for engine in testData:
             self.log("Testing Engine: "+engine)
+            PFT.disableAddressBar()
             PFT.goToSettings()
             if self.isPlatform('android'): PSM.openOrClickSetting("general")
             PSM.openOrClickSetting("complementarySearch")

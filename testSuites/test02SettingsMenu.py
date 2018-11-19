@@ -23,8 +23,8 @@ class TestSettingsMenu:
         self.log("Check 'Default Settings'.", "testsuite")
         PFT = FreshTab(self.settings)
         PSM = Settings(self.settings)
+        PFT.disableAddressBar()
         if self.isPlatform('ios'):
-            PFT.disableAddressBar()
             PFT.enableAddressBar()
         PFT.goToSettings()
         self.assertIsEqual(PSM.isSettingsMenu(), True, "Check if you can open the Settings Menu.")

@@ -53,7 +53,9 @@ class TopBar(Action3DotsMenu):
 
     def enableAddressBar(self):
         try:
-            return self.getElement("addressBar", timeout=3, absNoScr=True)
+            addressBar = self.getElement("addressBar", timeout=3, absNoScr=True)
+            addressBar.click()
+            return addressBar
         except Exception as e:
             try:
                 self.log(e)

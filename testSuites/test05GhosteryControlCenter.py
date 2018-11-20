@@ -97,7 +97,7 @@ class TestGhosteryControlCenter:
 
     @unittest.skipIf(TestUtils().isRequiredPlatform("ios"),
                          "test05_002_GhosteryCCAdBlocking Test Case will not run for IOS.")
-    @unittest.skipIf(True,
+    @unittest.skipIf(TestUtils().isTestScriptDebug(),
                          "test05_002_GhosteryCCAdBlocking Test Case will not run until Tests are fixed.")
     def test05_002_GhosteryCCAdBlocking(self):
         '''
@@ -112,9 +112,9 @@ class TestGhosteryControlCenter:
         '''
         PFT = FreshTab(self.settings)
         PTO = TabsOverview(self.settings)
-        self.sleep(5)
         self.log("Check 'Ghostery Control Center - AD Blocking' Feature.", "testsuite")
         # Check USB Debugging. Enable If not already Enabled.
+        PFT.disableAddressBar()
         PFT.goToSettings()
         PSM = Settings(self.settings)
         PSM.openOrClickSetting("advanced")

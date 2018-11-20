@@ -8,7 +8,7 @@ from common import testDataAndRequirements as TDR
 class TestBasicView:
 
     @unittest.skipIf(TestUtils().isTestScriptDebug(),
-                     "test01_001_Onboarding Test Case is being Reworked.")
+                     "test01_001_Onboarding Test Case will not run as it is Debug Mode.")
     def test01_001_Onboarding(self):
         '''
         :Test Cases:
@@ -67,11 +67,12 @@ class TestBasicView:
                            "Check if the 4th Onboarding is Ghostery/Cliqz Tab.")
         POB.startBrowsing()
 
-    @unittest.skipIf(True,
-                     "test01_002_FirstLaunch Test Case IS SKIPPED FOR NOW !.")
+    @unittest.skipIf(TestUtils().isTestScriptDebug(),
+                     "test01_002_FirstLaunch Test Case will not run as it is Debug Mode.")
     def test01_002_FirstLaunch(self):
         '''
         :Test Cases:
+        - Check if App Starts with Address Bar.
         - Check if URL Bar exists.
         - Check if Address Bar does not exist.
         - Check that Keyboard is already Minimized.
@@ -81,10 +82,11 @@ class TestBasicView:
         self.log("Check 'First Launch'.", "testsuite")
         PFT = FreshTab(self.settings)
         Onboarding(self.settings).startBrowsing()
-        urlBar = PFT.getURLBar()
-        self.assertNotEqual(urlBar, None, "Check if URL Bar exists.")
+        self.assertNotEqual(PFT.getAddressBar(), None, "Check if App Starts with Address Bar.")
         PFT.disableAddressBar()
         self.assertIsEqual(PFT.getAddressBar(), None, "Check if Address Bar does not exist.")
+        urlBar = PFT.getURLBar()
+        self.assertNotEqual(urlBar, None, "Check if URL Bar exists.")
         self.assertIsEqual(self.minimizeKeyboard(), False, "Check that Keyboard is already Minimized.",
                            skipIf="ios", skipMessage="Keyboard does not show for iOS Simulator.")
         urlBar.click()

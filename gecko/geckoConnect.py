@@ -30,14 +30,14 @@ class GeckoDriver:
         appPackage = os.environ.get('appPackage') or "org.mozilla.fennec_"
         try:
             subprocess.Popen(
-                ["adb", "forward", "tcp:6000", "localfilesystem:/data/data/"+appPackage+"/firefox-debugger-socket"],
+                ["adb", "forward", "tcp:12345", "localabstract:"+appPackage+"/firefox-debugger-socket"],
                 stdout=subprocess.PIPE)
             settings.logger.info(subprocess.check_output(["adb", "forward", "--list"]))
         except Exception as e:
             settings.logger.warning(e)
             settings.logger.warning("Error with Port Forwarding for Firefox Debugger Socket.")
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.sock.connect(("localhost", 6000))
+        self.sock.connect(("localhost", 12345))
         time.sleep(1)
         AlertBox(settings).acceptDegbugger()
         # Get ACK

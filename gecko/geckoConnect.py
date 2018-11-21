@@ -28,9 +28,10 @@ class GeckoDriver:
     def __init__(self, settings):
         self.timeout = 1
         appPackage = os.environ.get('appPackage') or "org.mozilla.fennec_"
+        androidHome = os.environ.get('ANDROID_HOME')
         try:
             subprocess.Popen(
-                ["adb", "forward", "tcp:12345", "localabstract:"+appPackage+"/firefox-debugger-socket"],
+                [androidHome+"/platform-tools/adb", "forward", "tcp:12345", "localabstract:"+appPackage+"/firefox-debugger-socket"],
                 stdout=subprocess.PIPE)
             settings.logger.info(subprocess.check_output(["adb", "forward", "--list"]))
         except Exception as e:

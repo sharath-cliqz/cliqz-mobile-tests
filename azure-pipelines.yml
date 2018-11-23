@@ -1,0 +1,67 @@
+# Xcode
+# Build, test, and archive an Xcode workspace on macOS.
+# Add steps that install certificates, test, sign, and distribute an app, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/xcode
+
+jobs:
+- job: Cliqz_Mobile_Tests_CI
+  timeoutInMinutes: 60
+  strategy:
+    matrix:
+      GhosteryAndroid:
+        platform: 'android'
+        brand: 'ghostery'
+      GhosteryIOS:
+        platform: 'ios'
+        brand: 'ghostery'
+  pool:
+    vmImage: 'macOS 10.13'
+  steps:
+  - bash: |
+      source scripts/azure-scripts/setup.sh $(platform)
+      source scripts/azure-scripts/launchEmu.sh $(platform)
+      source scripts/azure-scripts/envs.sh $(platform) $(brand)
+      source scripts/azure-scripts/appium.sh
+      python testRunner.py || true
+      source scripts/azure-scripts/cleanup.sh $(platform)
+    displayName: 'Setup and Run Tests'
+  - task: PublishTestResults@2
+    condition: always()
+    displayName: 'Publish JUnit Test'
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: 'test-reports/*.xml'
+  - task: ArchiveFiles@2
+    condition: always()
+    displayName: 'Archive Screenshots'
+    inputs:
+      rootFolderOrFile: 'screenshots'
+      archiveType: 'zip'
+      tarCompression: 'none'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/screenshots.zip'
+  - task: ArchiveFiles@2
+    condition: always()
+    displayName: 'Archive Logs'
+    inputs:
+      rootFolderOrFile: 'logs'
+      archiveType: 'zip'
+      tarCompression: 'none'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/logs.zip'
+  - task: ArchiveFiles@2
+    condition: always()
+    displayName: 'Archive Reports Folder'
+    inputs:
+      rootFolderOrFile: 'test-reports'
+      archiveType: 'zip'
+      tarCompression: 'none'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/reports.zip'
+  - task: PublishBuildArtifacts@1
+    condition: always()
+    displayName: 'Publish Artifacts'
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: '$(Build.BuildId)'
+      publishLocation: 'Container'
+  - bash: |
+      source scripts/azure-scripts/parseReports.sh
+    displayName: 'Parse Reports'

@@ -25,6 +25,7 @@ elif [ $platform == 'android' ]; then
 		echo $emuStatus
 		emuStatus="$(adb shell getprop sys.boot_completed)"
 	done
+	sleep 60
 else
 	echo "ERROR"
 	exit 1

@@ -6,13 +6,13 @@ echo "platformName=${platformName}"
 if [ $platform == 'android' ]; then
 	if [ $brand == 'cliqz' ]; then
 		echo "*** Exporting Cliqz Envs ***"
-		export app='http://repository.cliqz.com.s3.amazonaws.com/dist/android/nightly/cliqz/cliqz_Nightly-8_5ebaf6c82a47bb4626db63b8a88654781923419b_x86.apk'
+		export app='$(cat referenceApp/referenceApp_cliqz.link)'
 		echo "app=${app}"
 		export appPackage='com.cliqz.browser'
 		echo "appPackage=${appPackage}"
 	elif [ $brand == 'ghostery' ]; then
 		echo "*** Exporting Ghostery Envs ***"
-		export app='http://repository.cliqz.com.s3.amazonaws.com/dist/android/nightly/ghostery/ghostery_Nightly-8_5ebaf6c82a47bb4626db63b8a88654781923419b_x86.apk'
+		export app='$(cat referenceApp/referenceApp_ghostery.link)'
 		echo "app=${app}"
 		export appPackage='com.ghostery.android.ghostery'
 		echo "appPackage=${appPackage}"

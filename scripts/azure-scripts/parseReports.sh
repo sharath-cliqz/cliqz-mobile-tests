@@ -1,5 +1,5 @@
 echo "*** Azure Script - Parse Report XML ***"
-status=$(python -c scripts/azure-scripts/parseReports.py)
+status=$(python scripts/azure-scripts/parseReports.py)
 if [ "${status}" != "0" ]; then
     echo "ERROR: Some Tests Failed !"
     exit 1

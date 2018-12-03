@@ -7,6 +7,7 @@ if [ $platform == 'ios' ]; then
 	echo "DEV_UDID=${DEV_UDID}"
 	xcrun simctl boot $DEV_UDID
 	sleep 10
+	wget -v -O referenceApp/referenceApp_ios.zip $(cat referenceApp/referenceApp_ios.link)
 	sudo mkdir -p $HOME/Library/Developer/CoreSimulator/Devices/$DEV_UDID/data/Containers/Bundle/Application/
 	unzip -d $HOME/Library/Developer/CoreSimulator/Devices/$DEV_UDID/data/Containers/Bundle/Application/ referenceApp/referenceApp_ios.zip
 	xcrun simctl shutdown $DEV_UDID

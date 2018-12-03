@@ -1,5 +1,5 @@
 echo "*** Azure Script - Parse Report XML ***"
-status="$(python -c '''
+status="""$(python -c '''
 import os
 errorsCount = 0
 totalCount = 0
@@ -21,7 +21,7 @@ elif totalCount == 0:
     print -1
 else:
     print errorsCount
-''')"
+''')"""
 if [ "${status}" != "0" ]; then
     echo "ERROR: Some Tests Failed !"
     exit 1

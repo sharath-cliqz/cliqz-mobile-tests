@@ -6,13 +6,13 @@ echo "platformName=${platformName}"
 if [ $platform == 'android' ]; then
 	if [ $brand == 'cliqz' ]; then
 		echo "*** Exporting Cliqz Envs ***"
-		export app='$(cat referenceApp/referenceApp_cliqz.link)'
+		export app="$(cat referenceApp/referenceApp_cliqz.link)"
 		echo "app=${app}"
 		export appPackage='com.cliqz.browser'
 		echo "appPackage=${appPackage}"
 	elif [ $brand == 'ghostery' ]; then
 		echo "*** Exporting Ghostery Envs ***"
-		export app='$(cat referenceApp/referenceApp_ghostery.link)'
+		export app="$(cat referenceApp/referenceApp_ghostery.link)"
 		echo "app=${app}"
 		export appPackage='com.ghostery.android.ghostery'
 		echo "appPackage=${appPackage}"

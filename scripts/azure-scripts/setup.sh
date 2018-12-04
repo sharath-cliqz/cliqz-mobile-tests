@@ -12,6 +12,7 @@ source venv/bin/activate
 echo "Versions Post-install:"
 python -V && pip -V
 pip install -r requirements.txt
+mkdir screenshots
 echo "*** DONE ***"
 echo "*** Install Platform Specific Requirements ***"
 if [ $platform == 'ios' ]; then

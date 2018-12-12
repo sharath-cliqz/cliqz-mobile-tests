@@ -31,12 +31,12 @@ class TestBasicView:
         self.assertNotEqual(switch, None,
                             "Check if there is a Checkbox/Switch for Human Web on Onboarding Intro page.")
         attrib = "value" if self.isPlatform("ios") else "checked"
-        self.assertIsEqual(self.convertToBool(switch.get_attribute(attrib)), True,
+        self.assertIsEqual(self.convertToBool(switch.get_attribute(attrib)), False if self.isPlatform('android') else True,
                                "Check if there is a Checkbox/Switch is Default Checked/Enabled.")
         switch.click()
         self.sleep(1)
         self.assertIsEqual(self.convertToBool(switch.get_attribute(attrib)),
-                           False if self.isPlatform('android') else None,
+                           True if self.isPlatform('android') else None,
                            "Check if the Checkbox/Switch Changes status on Click.")
         switch.click()
         self.mobileScroll(direction="left")

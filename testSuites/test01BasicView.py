@@ -88,7 +88,7 @@ class TestBasicView:
         urlBar = PFT.getURLBar()
         self.assertNotEqual(urlBar, None, "Check if URL Bar exists.")
         self.assertIsEqual(self.minimizeKeyboard(), False, "Check that Keyboard is already Minimized.",
-                           skipIf="ios", skipMessage="Keyboard does not show for iOS Simulator.")
+                           noException=True)
         urlBar.click()
         self.assertNotEqual(PFT.getAddressBar(), None, "Check if Address Bar exists.")
 

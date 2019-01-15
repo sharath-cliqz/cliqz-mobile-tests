@@ -38,8 +38,9 @@ class TestSearchFeatures:
             PFT.openTabsOverview()
             PTO.closeAllTabs()
 
-    @unittest.skipIf(TestUtils().isTestScriptDebug(),
-                     "test06_002_ComplementarySearch Test Case will not run as it is NOT Debug Mode.")
+    # @unittest.skipIf(TestUtils().isTestScriptDebug(),
+    #                  "test06_002_ComplementarySearch Test Case will not run as it is NOT Debug Mode.")
+    @unittest.skipIf(True, "test06_002_ComplementarySearch Test Case will not run as it is NOT Debug Mode.")
     def test06_002_ComplementarySearch(self):
         '''
         :Test Cases:

@@ -7,7 +7,8 @@ from common.testDataAndRequirements import askLink
 
 class TestFreshTabFeatures:
 
-    @unittest.skipIf(TestUtils().isTestScriptDebug(), "test03_001_News Test Case will not run as it is Debug Mode.")
+    # @unittest.skipIf(TestUtils().isTestScriptDebug(), "test03_001_News Test Case will not run as it is Debug Mode.")
+    @unittest.skipIf(True, "test03_001_News Test Case will not run as it is Debug Mode.")
     def test03_001_News(self):
         '''
         :Test Cases:
@@ -41,8 +42,9 @@ class TestFreshTabFeatures:
         PFT.openTabsOverview()
         PTO.closeAllTabs()
 
-    @unittest.skipIf(TestUtils().isTestScriptDebug(),
-                         "test03_002_HistoryList Test Case will run only when it is Debug Mode.")
+    # @unittest.skipIf(TestUtils().isTestScriptDebug(),
+    #                      "test03_002_HistoryList Test Case will run only when it is Debug Mode.")
+    @unittest.skipIf(True, "test03_002_HistoryList Test Case will run only when it is Debug Mode.")
     def test03_002_HistoryList(self):
         '''
         :Test Cases:

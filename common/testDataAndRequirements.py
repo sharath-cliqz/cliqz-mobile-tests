@@ -64,7 +64,7 @@ defaultSettings['ClearDataOnExitList'] = {
 onBoardingWebpage = ["time.com", "spiegel.de", "cleartrip.com", "economist.com", "booking.com"]
 onBoardingVideoWebpage = "https://m.youtube.com/watch?v=iAuP33O1nDE"
 homeScreenButtonOnboardingLink = instagramLink
-onBoardingPage1 = ["Introducing Cliqz", "Introducing Ghostery"]
+onBoardingPage1 = ["Introducing Cliqz", "Welcome"]
 onBoardingPage2 = "Ad & Tracker Blocking"
 onBoardingPage3 = "Ghost Search"
 onBoardingPage4 = ["Start Tab", "Cliqz Tab"]

@@ -521,7 +521,7 @@ class Locators:
     }
     clearPrivateDataList['clearData'] = {
         'android': (MB.XPATH, "//android.widget.Button[@text='Clear data']"),
-        'ios': (MB.XPATH, "//XCUIElementTypeStaticText[@name='Clear Private Data']")
+        'ios': (MB.ACCESSIBILITY_ID, "ClearPrivateData")
     }
     clearPrivateDataList['confirmationAccept'] = {
         'ios': (MB.XPATH, "//XCUIElementTypeButton[@name='OK']")

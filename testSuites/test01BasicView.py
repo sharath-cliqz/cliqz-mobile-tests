@@ -159,7 +159,7 @@ class TestBasicView:
         self.assertNotEqual(PTO.getNavPrivateTabsButton(), None,
                             "Check Tabs Panel Header Bar has a Private Button.")
         self.assertNotEqual(PTO.getNavAddTabButton(tabsPanelHeaderBar), None,
-                            "Check Tabs Panel Header Bar has a Add Tab Button.")
+                            "Check Tabs Panel Header Bar has a Add Tab Button.", noException=True)
         self.assertNotEqual(PTO.getNavTabsMenuButton(tabsPanelHeaderBar), None,
                             "Check Tabs Panel Header Bar has a Menu Button.",
                             skipIf="ios", skipMessage="No Menu Button for iOS.")

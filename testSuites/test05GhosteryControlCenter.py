@@ -97,7 +97,7 @@ class TestGhosteryControlCenter:
 
     @unittest.skipIf(TestUtils().isRequiredPlatform("ios"),
                          "test05_002_GhosteryCCAdBlocking Test Case will not run for IOS.")
-    @unittest.skipIf(TestUtils().isTestScriptDebug(),
+    @unittest.skipUnless(TestUtils().isTestScriptDebug(),
                          "test05_002_GhosteryCCAdBlocking Test Case will not run until Tests are fixed.")
     def test05_002_GhosteryCCAdBlocking(self):
         '''

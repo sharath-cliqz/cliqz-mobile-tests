@@ -34,7 +34,7 @@ defaultSettings['enableAutocompletion'] = True
 defaultSettings['quickSearch'] = True
 defaultSettings['complementarySearch'] = "DuckDuckGo"
 
-defaultSettings['backgroundImage'] = True
+defaultSettings['backgroundImage'] = False
 defaultSettings['mostVisitedWebsites'] = True
 defaultSettings['news'] = True
 

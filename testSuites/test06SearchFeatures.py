@@ -6,6 +6,8 @@ from pages.pageSettings import Settings
 
 class TestSearchFeatures:
 
+    @unittest.skipIf(TestUtils().isRequiredPlatform("ios"),
+                     "test06_001_SearchResultsFor Test Case will not run for IOS until the feature is fixed.")
     @unittest.skipIf(TestUtils().isTestScriptDebug(),
                      "test06_001_SearchResultsFor Test Case will not run as it is NOT Debug Mode.")
     def test06_001_SearchResultsFor(self):

@@ -172,10 +172,8 @@ class TestBasicView:
         self.assertIsEqual(PFT.disableAddressBar().text, "Search or enter address",
                            "Check if FreshTab is opened after removing all tabs.")
 
-    @unittest.skipIf(TestUtils().isRequiredPlatform("ios"),
-                     "test01_005_HomeScreenOnboarding Test Case will not run for IOS.")
-    @unittest.skipIf(TestUtils().isTestScriptDebug(),
-                     "test01_005_HomeScreenOnboarding Test Case will not run as it is Debug Mode.")
+    @unittest.skipIf(True,
+                     "test01_005_HomeScreenOnboarding Test Case will not run as the feature was removed.")
     def test01_005_HomeScreenOnboarding(self):
         '''
         :Test Cases:

@@ -8,7 +8,7 @@ echo ""
 echo "*** Starting Appium ***"
 echo ""
 
-rm -rf *.txt
+#rm -rf *.txt
 #appium &
 #appium_pid=$!
 #sleep 5
@@ -42,3 +42,7 @@ echo ""
 echo "*** Results ***"
 echo ""
 python src/parse.py
+cat performance.txt
+echo ""
+echo "*** Done ***"
+echo ""

@@ -3,7 +3,7 @@ from appium.webdriver.common.mobileby import MobileBy as MB
 
 class Locators:
 
-    startBrowsingButton = {'ios': (MB.ACCESSIBILITY_ID, "IntroViewController.startBrowsingButton")}
+    startBrowsingButton = {'ios': (MB.ACCESSIBILITY_ID, "IntroViewController.skipIntroButton")}
     tabsButton = {'ios': (MB.ACCESSIBILITY_ID, "TabToolbar.tabsButton")}
     doneButton = {'ios': (MB.ACCESSIBILITY_ID, "TabTrayController.doneButton")}
     closeAllTabsConfirmation = {'ios': (MB.ACCESSIBILITY_ID, "TabTrayController.deleteButton.closeAll")}

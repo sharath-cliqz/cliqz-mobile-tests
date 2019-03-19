@@ -19,7 +19,7 @@ def getLinksFromFile():
     list = []
     with open("weblist.txt", "r") as fp:
         for line in fp.readlines():
-            list.append(line)
+            list.append(line.strip("\n"))
     return list
 
 

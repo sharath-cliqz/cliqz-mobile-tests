@@ -25,7 +25,14 @@ class WebPerformance(Driver):
                     errorTime = self.waitForReloadButton(reloadButton)
                 else:
                     s = datetime.datetime.now()
+                    self.driver.set_page_load_timeout(30)
                     self.driver.get(link)
+                    source = self.driver.page_source
+                    self.sleep(0.25)
+                    while source != self.driver.page_source:
+                        self.sleep(0.1)
+                        self.log("Sleeping for 100ms")
+                        source = self.driver.page_source
                 e = datetime.datetime.now()
                 resultTime = e-s-errorTime
                 self.log(link + " ::: " + resultTime.__str__())

@@ -1,13 +1,13 @@
 import datetime
 from src.driver import Driver
-from src.getlist import getList
+from src.getlist import getLinksFromFile
 
 
 class WebPerformance(Driver):
 
     browserName = None
     onboardingComplete = False
-    weblist = getList()
+    weblist = getLinksFromFile()
 
     def webPerformance(self):
         errorTime = datetime.datetime.now() - datetime.datetime.now()

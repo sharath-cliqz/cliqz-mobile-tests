@@ -1,19 +1,13 @@
 import datetime
 from src.driver import Driver
+from src.getlist import getList
 
 
 class WebPerformance(Driver):
 
     browserName = None
     onboardingComplete = False
-    weblist = [
-        "http://www.spiegel.de",
-        "http://time.com",
-        "http://independent.co.uk",
-        "http://timesnownews.com",
-        "http://nytimes.com",
-        "http://sueddeutsche.de"
-    ]
+    weblist = getList()
 
     def webPerformance(self):
         errorTime = datetime.datetime.now() - datetime.datetime.now()
@@ -36,15 +30,16 @@ class WebPerformance(Driver):
                 resultTime = e-s-errorTime
                 self.log(link + " ::: " + resultTime.__str__())
                 if i == 1:
-                    result[link] = {self.getBrowserName(): resultTime}
+                    result[link] = {}
+                    result[link][self.getBrowserName()] = {i: resultTime}
                 elif i == self.repeatCount:
-                    oldValue = result[link][self.getBrowserName()]
-                    avgResult = (oldValue + resultTime)/self.repeatCount
-                    result[link] = {self.getBrowserName(): avgResult.__str__()}
+                    total = resultTime
+                    for value in result[link][self.getBrowserName()].values():
+                        total += value
+                    result[link][self.getBrowserName()][i] = resultTime
+                    result[link][self.getBrowserName()]["avg"] = total/self.repeatCount
                 else:
-                    oldValue = result[link][self.getBrowserName()]
-                    resultTime += oldValue
-                    result[link] = {self.getBrowserName(): resultTime}
+                    result[link][self.getBrowserName()][i] = resultTime
             if self.getBrowserName() == "Cliqz":
                 self.openTabsOverview()
                 self.closeAllTabs()

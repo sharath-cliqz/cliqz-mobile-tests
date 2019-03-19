@@ -34,7 +34,7 @@ if [ $platform == 'android' ]; then
 elif [ $platform == 'ios' ]; then
 	export deviceName="${DEV_NAME}"
 	echo "deviceName=${deviceName}"
-	export platformVersion="11.4"
+	export platformVersion="12.1"
 	echo "platformVersion=${platformVersion}"
 	export udid="${DEV_UDID}"
 	echo "udid=${udid}"

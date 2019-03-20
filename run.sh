@@ -18,7 +18,7 @@ echo "*** Starting Web Performance Test !! ***"
 echo ""
 # Declaration of an Array of Browser Bundle IDs to run the Benchmark against.
 declare -a configs=("safari.config" "lumen.config")
-
+mkdir reports
 # Loop through the BundleIds and run the tests again.
 for id in "${configs[@]}"
 do
@@ -43,7 +43,7 @@ echo "*** Results ***"
 echo ""
 deactivate
 python src/parse.py
-cat performance.txt
+cat reports/performance.txt
 echo ""
 echo "*** Done ***"
 echo ""

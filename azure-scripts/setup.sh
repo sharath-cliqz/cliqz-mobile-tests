@@ -10,7 +10,7 @@ pip install virtualenv
 virtualenv -p python3 venv
 source venv/bin/activate
 echo "Versions Post-install:"
-python -V && pip -V
+python -V && python3 -V && pip -V
 pip install -r requirements.txt
 mkdir screenshots
 echo "*** DONE ***"

@@ -57,7 +57,7 @@ class WebPerformance(Driver):
             self.resetBrowser()
             if i == self.repeatCount:
                 self.log("*** Run Complete ***")
-        with open(self.getBrowserName()+".txt", "w") as fp:
+        with open("reports/{}.txt".format(self.getBrowserName()), "w") as fp:
             fp.write(str(result))
 
     def main(self):

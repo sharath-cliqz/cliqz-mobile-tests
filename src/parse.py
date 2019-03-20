@@ -13,7 +13,7 @@ with open("performance.txt", "w") as fp:
     for webpage in result:
         list = result[webpage]
         jointResult = "{}\n{} - {}\n{} - {}\n\n".format(webpage,
-                                                list[0].keys()[0], list[0].values()[0],
-                                                list[1].keys()[0], list[1].values()[0])
+                                                list[0].keys()[0], list[0].values()[0]["avg"],
+                                                list[1].keys()[0], list[1].values()[0]["avg"])
         print(jointResult)
         fp.write(jointResult)

@@ -38,15 +38,19 @@ class WebPerformance(Driver):
                 self.log(link + " ::: " + resultTime.__str__())
                 if i == 1:
                     result[link] = {}
-                    result[link][self.getBrowserName()] = {i: resultTime}
+                    result[link][self.getBrowserName()] = {str(i): resultTime}
                 elif i == self.repeatCount:
                     total = resultTime
                     for value in result[link][self.getBrowserName()].values():
                         total += value
-                    result[link][self.getBrowserName()][i] = resultTime
-                    result[link][self.getBrowserName()]["avg"] = total/self.repeatCount
+                    result[link][self.getBrowserName()][str(i)] = resultTime
+                    temp = {}
+                    for k, v in result[link][self.getBrowserName()].items():
+                        temp[k] = v.__str__()
+                    result[link][self.getBrowserName()] = temp
+                    result[link][self.getBrowserName()]["avg"] = (total/self.repeatCount).__str__()
                 else:
-                    result[link][self.getBrowserName()][i] = resultTime
+                    result[link][self.getBrowserName()][str(i)] = resultTime
             if self.getBrowserName() == "Cliqz":
                 self.openTabsOverview()
                 self.closeAllTabs()

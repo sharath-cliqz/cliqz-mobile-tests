@@ -10,8 +10,8 @@ sleep 5
 echo "*** DONE ***"
 echo "*** Stopping Emulator/Simulator ***"
 if [ $platform == 'ios' ]; then
-    xcrun simctl shutdown $DEV_UDID
-    xcrun simctl delete $DEV_UDID
+    xcrun simctl shutdown $(cat dev.id)
+    xcrun simctl delete $(cat dev.id)
 elif [ $platform == 'android' ]; then
     adb kill-server
     kill -9 $(cat emu.pid)

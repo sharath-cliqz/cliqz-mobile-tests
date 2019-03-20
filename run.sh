@@ -42,8 +42,8 @@ echo ""
 echo "*** Results ***"
 echo ""
 deactivate
-#python src/parse.py
-#cat performance.txt
+python src/parse.py
+cat performance.txt
 echo ""
 echo "*** Done ***"
 echo ""

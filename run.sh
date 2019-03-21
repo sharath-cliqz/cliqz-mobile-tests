@@ -43,7 +43,7 @@ echo "*** Results ***"
 echo ""
 deactivate
 python src/parse.py
-cat reports/performance.txt
+#cat reports/performance.txt
 echo ""
 echo "*** Done ***"
 echo ""

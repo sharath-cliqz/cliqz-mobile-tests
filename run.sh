@@ -42,6 +42,7 @@ echo ""
 echo "*** Results ***"
 echo ""
 deactivate
+pip install xlwt
 python src/parse.py
 #cat reports/performance.txt
 echo ""

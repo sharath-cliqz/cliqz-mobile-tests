@@ -139,7 +139,7 @@ class Locators:
     }
     threeDotsButton = {
         'android' : (MB.ID, 'menu'),
-        'ios': (MB.ACCESSIBILITY_ID, "UrlBar.pageOptionsButton")
+        'ios': (MB.ACCESSIBILITY_ID, "TabLocationView.pageOptionsButton")
     }
 
     ####################################################################################################################

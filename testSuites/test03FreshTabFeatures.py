@@ -111,7 +111,8 @@ class TestFreshTabFeatures:
         if PSM.getStatusValueForSetting('mostVisitedWebsites')['switch'] != True:
             PSM.changeSettingStatus("mostVisitedWebsites", True)
             self.sleep(1)
-        if self.isPlatform("ios"):
+        PSM.goOutOfSettings()
+        '''if self.isPlatform("ios"):
             PSM.openOrClickSetting("clearPrivateData")
             PSM.clearData("browsingHistory")
             PSM.goOutOfSettings()
@@ -121,7 +122,7 @@ class TestFreshTabFeatures:
             PFT.quickClearHistory()
             self.sleep(3)
             PFT.getFavoritesButton().click()
-            PFT.getTopSitesButton().click()
+            PFT.getTopSitesButton().click()'''
         initialData = PFT.getTopSitesData()
         for count in range(0, 4):
             PFT.openWebpage()
@@ -143,7 +144,7 @@ class TestFreshTabFeatures:
         newTopSite = self.listDiff(intermediateData, finalData)
         self.assertIsEqual(len(newTopSite), 1, "Visit Ask.com and Check if TopSite is added.")
         self.assertIsIn("ask", " ".join(finalData).lower(), "Check if the Domain of Ask.com is correct.")
-        if self.isPlatform("ios"):
+        '''if self.isPlatform("ios"):
             PFT.deleteTopSite(PFT.getAllTopSites()[0])
             self.sleep(3)
             tempData = PFT.getTopSitesData()
@@ -163,8 +164,8 @@ class TestFreshTabFeatures:
             PFT.quickClearHistory()
             self.sleep(3)
             PFT.getFavoritesButton().click()
-            PFT.getTopSitesButton().click()
+            PFT.getTopSitesButton().click()'''
         PFT.openTabsOverview()
         PTO.closeAllTabs()
         PFT.disableAddressBar()
-        self.assertIsEqual(PFT.isTopSitesEmpty(), True, "Check if Clearing History removes the TopSites as well.")
+        #self.assertIsEqual(PFT.isTopSitesEmpty(), True, "Check if Clearing History removes the TopSites as well.")

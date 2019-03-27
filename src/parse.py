@@ -4,7 +4,14 @@ import datetime
 
 
 def dict_zip(*dicts):
-    return {k: [d[k] for d in dicts] for k in dicts[0].keys()}
+    return {k: listToDict([d[k] for d in dicts]) for k in dicts[0].keys()}
+
+
+def listToDict(l):
+    d = {}
+    for item in l:
+        d[item.keys()[0]] = item.values()[0]
+    return d
 
 
 def read_reports():
@@ -35,15 +42,13 @@ def time_diff(time1, time2):
 
 def write_to_file():
     result = read_reports()
+    with open("reports/Data.txt", "w") as fp:
+        fp.write(str(result))
     with open("reports/performance.txt", "w") as fp:
         for webpage in result:
             webpageResultList = result[webpage]
-            if "Safari" in webpageResultList[0]:
-                safariTimes = webpageResultList[0]["Safari"]
-                cliqzTimes = webpageResultList[1]["Cliqz"]
-            else:
-                safariTimes = webpageResultList[1]["Safari"]
-                cliqzTimes = webpageResultList[0]["Cliqz"]
+            safariTimes = webpageResultList["Safari"]
+            cliqzTimes = webpageResultList["Cliqz"]
             safariAvg = safariTimes.pop("avg")
             cliqzAvg = cliqzTimes.pop("avg")
             diff = time_diff(safariAvg, cliqzAvg)
@@ -72,7 +77,7 @@ def write_to_excel():
     sh_summary.write(1, 4, "(ALL TIMES ARE IN SECONDS !!)")
     avgCol = 0
     col = 1
-    for value in result.values()[0][0].values()[0].keys():
+    for value in result.values()[0].values()[0]:
         if value.lower() == "avg":
             avgCol = col
         sh_safari.write(0, col, "Test Run {}".format(col) if value.lower() != "avg" else "AVG")
@@ -84,12 +89,8 @@ def write_to_excel():
         sh_cliqz.write(row, 0, webpage)
         sh_safari.write(row, 0, webpage)
         webpageResultList = result[webpage]
-        if "Safari" in webpageResultList[0]:
-            safariResults = webpageResultList[0]["Safari"]
-            cliqzResults = webpageResultList[1]["Cliqz"]
-        else:
-            safariResults = webpageResultList[1]["Safari"]
-            cliqzResults = webpageResultList[0]["Cliqz"]
+        safariResults = webpageResultList["Safari"]
+        cliqzResults = webpageResultList["Cliqz"]
         col = 1
         for key in safariResults:
             if key == "avg":

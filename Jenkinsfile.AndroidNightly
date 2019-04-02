@@ -4,7 +4,7 @@ node('us-east-1 && ubuntu && docker') {
     stage('Checkout') {
         checkout scm
     }
-    def dockerTag = sh(returnStdout: true, script: """curl https://raw.githubusercontent.com/cliqz-oss/cliqz-android/master/mozilla-release/browser/config/version_display.txt""").trim()
+    def dockerTag = sh(returnStdout: true, script: "curl https://raw.githubusercontent.com/cliqz-oss/cliqz-android/master/mozilla-release/browser/config/version.txt").trim()
     def baseImageName = "browser-f/android:${dockerTag}"
     def args = "-v ${pwd}/artifacts:/artifacts:rw"
     docker.image("141047255820.dkr.ecr.us-east-1.amazonaws.com/${baseImageName}").inside(args) {

@@ -32,7 +32,7 @@ defaultSettings['blockExplicitContent'] = True  #Boolean: True or False
 defaultSettings['humanWeb'] = "On"
 defaultSettings['enableAutocompletion'] = True
 defaultSettings['quickSearch'] = True
-defaultSettings['complementarySearch'] = "DuckDuckGo"
+defaultSettings['complementarySearch'] = "Google"
 
 defaultSettings['backgroundImage'] = True
 defaultSettings['mostVisitedWebsites'] = True

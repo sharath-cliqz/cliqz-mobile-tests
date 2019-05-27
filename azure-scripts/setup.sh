@@ -1,7 +1,7 @@
 echo "*** Azure Script - Setup Test Environment ***"
 platform=$1
 echo "*** Install Appium and WD ***"
-npm install --global npm appium@beta wd
+npm install --global npm appium wd
 echo "*** DONE ***"
 echo "*** Install and Setup Virtualenv ***"
 echo "Versions Pre-install:"

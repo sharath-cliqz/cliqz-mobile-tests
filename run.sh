@@ -7,7 +7,7 @@ echo ""
 echo ""
 echo "*** Starting Appium ***"
 echo ""
-
+source venv3.7/bin/activate
 #rm -rf *.txt
 #appium &
 #appium_pid=$!
@@ -17,7 +17,7 @@ echo ""
 echo "*** Starting Web Performance Test !! ***"
 echo ""
 # Declaration of an Array of Browser Bundle IDs to run the Benchmark against.
-declare -a configs=("safari.config" "lumen.config")
+declare -a configs=("lumen.config" "lumen1.config")
 mkdir reports
 # Loop through the BundleIds and run the tests again.
 for id in "${configs[@]}"
@@ -27,6 +27,21 @@ do
     echo "Performing Benchmarks with config:  $CONFIG_FILE"
     echo ""
     python3 webperformance.py
+    echo ""
+    echo ""
+    echo ""
+    echo ""
+    echo ""
+    echo ""
+    echo "********        RUN COMPLETE        ********"
+    echo ""
+    echo ""
+    echo ""
+    echo ""
+    echo ""
+    echo ""
+    echo ""
+    sleep 60
 done
 
 echo ""

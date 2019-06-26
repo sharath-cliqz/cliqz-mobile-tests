@@ -15,9 +15,9 @@ def listToDict(l):
 
 
 def read_reports():
-    with open("reports/Safari.txt", "r") as fp:
+    with open("usa.txt", "r") as fp:
         safari = literal_eval(fp.read())
-    with open("reports/Cliqz.txt", "r") as fp1:
+    with open("india.txt", "r") as fp1:
         cliqz = literal_eval(fp1.read())
     return dict_zip(safari, cliqz)
 
@@ -49,13 +49,15 @@ def write_to_file():
             webpageResultList = result[webpage]
             safariTimes = webpageResultList["Safari"]
             cliqzTimes = webpageResultList["Cliqz"]
-            safariAvg = safariTimes.pop("avg")
-            cliqzAvg = cliqzTimes.pop("avg")
-            diff = time_diff(safariAvg, cliqzAvg)
-            safariResult = "{} - {} {}   [{}]".format(
-                "Safari", safariAvg, "".rjust(len(diff)+2, " "), ", ".join(safariTimes.values()))
-            cliqzResult = "{}  - {} ({})   [{}]".format(
-                "Lumen", cliqzAvg, diff, ", ".join(cliqzTimes.values()))
+            safariAvg = list(safariTimes.pop("1"))
+            safariAvg = "{}.{}".format(safariAvg[0], safariAvg[1])
+            cliqzAvg = list(cliqzTimes.pop("1"))
+            cliqzAvg = "{}.{}".format(cliqzAvg[0], cliqzAvg[1])
+            diff = "00:00:00"#time_diff(safariAvg, cliqzAvg)
+            safariResult = "{}   - {}".format(
+                "USA", safariAvg)
+            cliqzResult = "{} - {}".format(
+                "INDIA", cliqzAvg, diff)
             jointResult = "{}\n{}\n{}\n\n".format(webpage, safariResult, cliqzResult)
             print(jointResult)
             fp.write(jointResult)
@@ -114,4 +116,4 @@ def write_to_excel():
 
 if __name__ == "__main__":
     write_to_file()
-    write_to_excel()
+    #write_to_excel()

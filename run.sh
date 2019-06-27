@@ -17,7 +17,7 @@ echo ""
 echo "*** Starting Web Performance Test !! ***"
 echo ""
 # Declaration of an Array of Browser Bundle IDs to run the Benchmark against.
-declare -a configs=("safari.config" "lumen.config")
+declare -a configs=("lumen.config")
 mkdir reports
 # Loop through the BundleIds and run the tests again.
 for id in "${configs[@]}"
@@ -41,10 +41,10 @@ echo ""
 echo ""
 echo "*** Results ***"
 echo ""
-deactivate
-pip install xlwt
-python src/parse.py
-#cat reports/performance.txt
+#deactivate
+#pip install xlwt
+#python src/parse.py
+cat reports/greece.txt
 echo ""
 echo "*** Done ***"
 echo ""

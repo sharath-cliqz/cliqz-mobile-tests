@@ -57,8 +57,10 @@ class WebPerformance(Driver):
             self.resetBrowser()
             if i == self.repeatCount:
                 self.log("*** Run Complete ***")
-        with open("reports/{}.txt".format(self.getBrowserName()), "w") as fp:
-            fp.write(str(result))
+        with open("reports/{}.txt".format(self.vpn), "w") as fp:
+            #fp.write(str(result))
+            for r in result:
+                fp.write("{} :: {}\n".format(r, result[r]['Cliqz']['1'].__str__()))
 
     def main(self):
         self.startDriver()

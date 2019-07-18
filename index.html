@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <title>VPN Status</title>
+    <script type="text/javascript">
+      setTimeout(function(){
+        location = ''
+      },60000)
+    </script>
+    <script type="text/javascript">
+    var xhttp = new XMLHttpRequest();
+    xhttp.responseType = "json";
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const input = xhttp.response;
+            document.body.textContent = "";
+            const table = document.body.appendChild(document.createElement('table'));
+            table.style.border = "3px solid #000"
+            const thead = table.appendChild(document.createElement('thead'));
+            const tr = thead.appendChild(document.createElement('tr'));
+            const columnTexts = Object.keys(input[0]);
+            columnTexts.forEach((columnText) => {
+              const td = tr.appendChild(document.createElement('td'))
+              td.textContent = columnText.toUpperCase();
+              td.style.border = "1px solid #000"
+              if (columnText == "country" || columnText == "status"){
+                td.width = "100"
+              }
+              td.align = "center"
+              td.style.fontWeight = "bold"
+            });
+            const tbody = table.appendChild(document.createElement('tbody'));
+            input.forEach((item) => {
+              const tr = tbody.appendChild(document.createElement('tr'));
+              const values = Object.values(item);
+              values.forEach(value => {
+                const td = tr.appendChild(document.createElement('td'))
+                td.style.border = "1px solid #000"
+                td.align = "center"
+                if(value == 'False'){
+                  const img = td.appendChild(document.createElement('img'))
+                  img.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Cross_red_circle.svg/512px-Cross_red_circle.svg.png"
+                  img.height = "20"
+                  img.width = "20"
+                }
+                else if(value == 'True'){
+                  const img = td.appendChild(document.createElement('img'))
+                  img.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTpfWtnOWf7tRLAKPWxkvHc-a7cugLKOjFoeydQvmNj0ab7JRJvg"
+                  img.height = "25"
+                  img.width = "25"
+                }
+                else {
+                  td.textContent = value.toUpperCase();
+                }
+              });
+            });
+        }
+    };
+    xhttp.open("GET", "http://127.0.0.1:9999?callback=abcd", true);
+    xhttp.send();
+    </script>
+</head>
+<body>
+</body>
+</html>

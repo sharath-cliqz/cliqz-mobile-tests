@@ -1,0 +1,47 @@
+node("ios-device-farm"){
+    stage("Checkout"){
+        checkout scm
+    }
+    try {
+        stage("WebDriver Agent"){
+            sh '''#!/bin/bash -l
+                curl -o WebDriverAgent.tar.gz https://cdn.cliqz.com/mobile/browser/tests/appium/WebDriverAgent.tar.gz
+                tar xopf WebDriverAgent.tar.gz
+            '''
+        }
+        stage("VirtualEnv"){
+            sh '''#!/bin/bash -l
+                virtualenv -p python3 venv
+                source venv/bin/activate
+                python -V
+                pip install -r requirements.txt
+                deactivate
+            '''
+        }
+        stage("NPM"){
+            sh '''#!/bin/bash -l
+                npm ci
+            '''
+        }
+        stage("Run VPN Tests"){
+            timeout(30){
+                sh '''#!/bin/bash -l
+                    source venv/bin/activate
+                    export WEB_DRIVER_AGENT=$PWD/WebDriverAgent
+                    python vpnTest.py
+                    deactivate
+                '''
+            }
+        }
+        stage("Archive"){
+            archiveArtifacts allowEmptyArchive: true, artifacts: 'logs/*.*'
+            junit "test-reports/*.xml"
+        }
+    } catch(all) {
+        // pass
+    } finally {
+        stage("Clean"){
+            sh "rm -rf logs/ test-reports/ WebDriverAgent/ WebDriverAgent.tar.gz"
+        }
+    }
+}

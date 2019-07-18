@@ -110,3 +110,6 @@ venv.bak/
 screenshots/
 test-reports/
 reports/
+venv*/
+*.db
+node_modules/

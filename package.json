@@ -1,0 +1,23 @@
+{
+  "name": "cliqz-mobile-tests",
+  "version": "1.0.0",
+  "description": "<h1>IOS Devices</h1>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "appium-server": "appium --log logs/appium.log"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharath-cliqz/cliqz-mobile-tests.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sharath-cliqz/cliqz-mobile-tests/issues"
+  },
+  "homepage": "https://github.com/sharath-cliqz/cliqz-mobile-tests#readme",
+  "dependencies": {
+    "appium": "1.13.0"
+  }
+}

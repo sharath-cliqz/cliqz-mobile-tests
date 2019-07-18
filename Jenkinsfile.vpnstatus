@@ -28,7 +28,7 @@ node("ios-device-farm"){
                 sh '''#!/bin/bash -l
                     source venv/bin/activate
                     export WEB_DRIVER_AGENT=$PWD/WebDriverAgent
-                    python vpnTest.py
+                    python vpnTest.py || true
                     deactivate
                 '''
             }
@@ -36,6 +36,24 @@ node("ios-device-farm"){
         stage("Archive"){
             archiveArtifacts allowEmptyArchive: true, artifacts: 'logs/*.*'
             junit "test-reports/*.xml"
+        }
+        stage("Email"){
+            if (fileExists('logs/FAIL.log')) {
+                def failed_countries = readFile 'logs/Fail.txt'
+                def body_text="""
+                Looks like the VPN is DOWN !!
+
+                FAILED COUNTRIES: ${failed_countries}
+
+
+                Please verify Manually to confirm.
+                """
+                emailext(
+                    to: 'androidev@cliqz.com',
+                    subject: 'FAIL :: Lumen IOS VPN Status :: Looks like VPN is Down',
+                    body: body_text.stripIndent()
+                )
+            }
         }
     } catch(all) {
         // pass

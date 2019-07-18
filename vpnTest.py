@@ -104,7 +104,8 @@ class VpnTest(unittest.TestCase,
                 self.check_vpn(country, self.VPN_LOCATIONS[country])
             except Exception as e:
                 self.logger.error(e)
-                self.FAILED_COUNTRIES[country] = self.VPN_LOCATIONS[country]
+                with open("logs/FAIL.log", "a") as fp:
+                    fp.write("{}\n".format(country))
         else:
             self.logger.info("*** VPN Test for {} was Passed in the initial Try ***".format(country.upper()))
 
